@@ -9,17 +9,104 @@
         <link href="style.css" media="screen" rel="stylesheet" type="text/css" />
 
     </head> 
+    <style>
+        body {
+          background-color: #CBFFC9;
+          font-family: karla;
+        }
+        h1,h2,h3 {
+          color: #2C382E;
+          font-style: underline;
+        }
+        p {
+          color: #2F4F4F;
+        }
+        .header{
+            background-color: #CBFFC9;
+        }
+
+    </style>
     <body> 
 
         <div class="header">
-            <h1>Example Student's Assignment 2!</h1>
+            <h1>Kathy's Assignment 2!</h1>
             <p>
-            <img src="red-panda.jpg" width=400></a>
+            <img src="led-lights.jpg" width=400></a>
             </p>
+            <h2>
+            Here is all the documentation for assignment 1!
+            </h2>
             <p>
-            Here is all the documentation for assignment 2!
+                <img src="fadecircuit.jpg" width=500></a>
+                <br> Picture of my breadboard 
             </p>
+            <h2>
+                A video of my LEDs working with a button!
+            </h2>
+            <video width="420" height="440" controls>
+                <source src="fade.mp4" type="video/mp4">
+              </video>
+            <h2>
+            My arduino code!
+            </h2>
+            <p>
+                const int buttonPin = 2;      // the number of the pushbutton pin
+            <br>const int ledPin = 9;     // the number of the LED pin
+            <br>const int fadingDelay = 50;  // the speed of LED fading (higher value = slower)
+            <br>const int blueled = 13;
+            <br> 
+            <br>// variables will change:
+            <br>    
+            <br>int buttonState = 0;         // variable for reading the pushbutton status
+            <br>boolean fadingState = false; // determines whether the LED needs to be turned on or off
+            <br>
+            <br>void setup() {
+            <br>    // initialize the LED pin as an output:
+            <br>    pinMode(ledPin, OUTPUT);
+            <br>    // initialize the pushbutton pin as an input:              
+            <br>    pinMode(buttonPin, INPUT);
+            <br>    pinMode(blueled, OUTPUT);
+            <br>    }<br>
+            <br>void loop() {
+            <br>    // read the state of the pushbutton value:
+            <br>    buttonState = digitalRead(buttonPin);    
+            <br>    // check whether the button was pressed
+            <br>    if (buttonState == HIGH) {
+            <br>        // check the current LED status (on/off)
+            <br>        if (fadingState == false) {
+            <br>             // turn on the LED
+            <br>             for (int i = 0; i <= 255; i += 5) {
+            <br>                analogWrite(ledPin, i);
+            <br>                delay(fadingDelay);
+            <br>                digitalWrite(blueled, HIGH);
+            <br>            }
+            <br>        } else {
+            <br>            // turn off the LED
+            <br>            for (int i = 255; i >= 0; i -= 5) {
+            <br>                analogWrite(ledPin, i);
+            <br>                delay(fadingDelay);
+            <br>                digitalWrite(blueled, LOW);   
+            <br>            }
+            <br>        }
+            <br>        fadingState = !fadingState;  // save the current LED state (on/off)
+            <br>    }
+            <br>}
+            </p>
+        <h2>
+            My schematic!
+        </h2>
+        <p>
+            <img src="fadeschematic.jpg" width=500></a>
+            <br> Picture of my schematic & calculations.
+            <br> I used a high resistor for the button because the button does not need a specific/high voltage
+            <br> to work. As for the red LED, putting it in Ohm's Law would give me 160 Ω and I used 220 Ω
+            <br> because it is the closest resistor. R = (5 - 1.8) / .02
+            <br>
+            <br> This project was done with the help/collaboration of Isabell and also with the help of some online resources:
+            <br> <a>https://darkbluebit.com/arduino/pushbutton-and-fading-led/</a>
+            <br> <a>https://forum.arduino.cc/index.php?topic=435590.0</a>
+        </p>
         </div>
-        
+
     </body>
 </html>
